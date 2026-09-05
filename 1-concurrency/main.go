@@ -20,9 +20,9 @@ func main() {
 	sqCh := make(chan int)
 	go func(source chan int, target chan int) {
 		for num := range source {
-			sqCh <- num * num
+			target <- num * num
 		}
-		close(sqCh)
+		close(target)
 	}(intCh, sqCh)
 
 	for sq := range sqCh {
